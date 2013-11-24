@@ -1,0 +1,20 @@
+#!/bin/zsh                                                                                                                                                                                                                                  
+
+#svnで管理しているディレクトリのパス
+svnDirectoryPath="/Users/natsumi/work/labo/dev2013/natsumik/test/"
+
+#カレントディレクトリ以下でgitで管理しているファイルの一覧
+files=( ${(@f)"$(git ls-files)"} )
+
+for file in $files; do
+  echo "========================"
+  echo $file
+  #パスに含まれているディレクトリが存在しているか
+  if [ -e ${svnDirectoryPath}`dirname ${file}` ]; then
+  else
+    mkdir $svnDirectoryPath`dirname ${file}`
+  fi  
+  #コピー
+  cp $file $svnDirectoryPath$file
+  echo "=========================="
+done
