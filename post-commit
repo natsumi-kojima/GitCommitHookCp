@@ -1,7 +1,7 @@
 #!/bin/zsh                                                                                                                                                                                                                                  
 
 #svnで管理しているディレクトリのパス
-svnDirectoryPath="/Users/natsumi/work/labo/dev2013/natsumik/test/"
+svnDirectoryPath="xxxxx"
 
 #カレントディレクトリ以下でgitで管理しているファイルの一覧
 files=( ${(@f)"$(git ls-files)"} )
