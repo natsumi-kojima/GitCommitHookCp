@@ -8,11 +8,13 @@ files=( ${(@f)"$(git ls-files)"} )
 
 for file in $files; do
   echo $file
-  #パスに含まれているディレクトリが存在しているか
-  if [ -e ${svnDirectoryPath}`dirname ${file}` ]; then
-  else
-    mkdir -p  $svnDirectoryPath`dirname ${file}`
-  fi  
+	if [! $file = ".gitignore"]; then
+		#パスに含まれているディレクトリが存在しているか
+		if [ -e ${svnDirectoryPath}`dirname ${file}` ]; then
+		else
+			mkdir -p  $svnDirectoryPath`dirname ${file}`
+		fi  
+	fi
   #コピー
   cp $file $svnDirectoryPath$file
 done
