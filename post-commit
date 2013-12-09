@@ -7,14 +7,13 @@ svnDirectoryPath="xxxxx"
 files=( ${(@f)"$(git ls-files)"} )
 
 for file in $files; do
-  echo $file
-	if [! $file = ".gitignore"]; then
+ 	if [ $file != ".gitignore"]; then
 		#パスに含まれているディレクトリが存在しているか
 		if [ -e ${svnDirectoryPath}`dirname ${file}` ]; then
 		else
 			mkdir -p  $svnDirectoryPath`dirname ${file}`
-		fi  
-	fi
+		fi 
   #コピー
-  cp $file $svnDirectoryPath$file
+  cp $file $svnDirectoryPath$file 
+	fi
 done
